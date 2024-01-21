@@ -61,15 +61,16 @@ function next(){
     answerBox.textContent = domandaHtml.risposte[i].testo;
     
     answerBox.addEventListener("click", function(){
-      if (domandaHtml.risposte[i].corretta){
-        answerBox.classList.add("correct");
-      } else {
-        answerBox.classList.add("false");
-      }
-      
-      setTimeout(() => {
-        next();
-      }, 700);
+      var children =quizContainer.children;
+      for(let j = 0; j < children.length; j++){
+      children[j].setAttribute("disabled", "");
+    }
+    console.log(domandaHtml.risposte[i].corretta)
+    if (domandaHtml.risposte[i].corretta === true){
+      answerBox.classList.add("correct");
+    } else {
+      answerBox.classList.add("false");
+    } 
     })
     quizContainer.append(answerBox);
   }
